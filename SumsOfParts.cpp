@@ -19,40 +19,28 @@
  * \copyright Copyright (c) 2021
  */
 
-
 #include <iostream>
 #include <vector>
-#include <deque>
-
-
 
 std::vector<unsigned long long> partsSum(const std::vector<unsigned long long>& ls)
 {
 	std::vector<unsigned long long> reponse; // Initialisation d'un vecteur de réponses
 
 	unsigned long long add = 0; 
-	size_t compteur = 0; 
-	size_t longeur = ls.size();
 
-	// Nouveau vecteur 
-	std::vector<unsigned long long> newLs;
-	newLs = ls;
-	
-	while (compteur < longeur)
+	// Additoner 
+	for (size_t i = 0; i < ls.size(); i++)
 	{
-		// Additoner 
-		for (size_t i = 0; i < newLs.size(); i++)
-		{
-			add += newLs[i];
-		}
-
-		reponse.push_back(add); // Ajouter la réponse au vecteur 
-		newLs.erase(newLs.begin()); // Supprimer le premier élément
-		add = 0; 
-		compteur++; 
+		add += ls[i];
 	}
+	reponse.push_back(add); // Ajouter la réponse au vecteur 
 	
-	reponse.push_back(0);
+	// Soustraire 
+	for (size_t i = 0; i < ls.size(); i++)
+	{
+		add -= ls[i];
+		reponse.push_back(add);// Ajouter la réponse au vecteur 
+	}
 
 	return reponse;
 }
